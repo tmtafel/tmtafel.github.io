@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="bootstrap.min.css"/>
+    <script src="moment.js"></script>
+    <script src="jquery-3.3.1.min.js"></script>
+    <script src="bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col"><!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#leaderboardModal">
+                View Leaderboard
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="leaderboardModal" tabindex="-1" role="dialog" aria-labelledby="leaderboardModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="leaderboardModalLabel">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body" style="overflow:auto;">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Name</th>
+                                    <th>Score</th>
+                                    <th>Thru</th>
+                                </tr>
+                                </thead>
+                                <tbody class="leaderboard">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <h1>2018 US Open Golf Draft</h1>
+        </div>
+
+        <div class="col-xl-3 col-lg-4 col-sm-6 col-12">
+            <h4 class="captain">Tosh</h4>
+            <ul class="list-group team">
+                <li class="list-group-item d-flex justify-content-between align-items-center player">Justin Thomas</li>
+                <li class="list-group-item d-flex justify-content-between align-items-center player">Patrick Reed</li>
+                <li class="list-group-item d-flex justify-content-between align-items-center player">Alex Noren</li>
+                <li class="list-group-item d-flex justify-content-between align-items-center player">Louis Oosthuizen</li>
+                <li class="list-group-item d-flex justify-content-between align-items-center player">Tony Finau</li>
+                <li class="list-group-item d-flex justify-content-between align-items-center player">Martin Kaymer</li>
+            </ul>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-sm-6 col-12">
+            <h4 class="captain">Will</h4>
+            <ul class="list-group team">
+                <li class="list-group-item d-flex justify-content-between align-items-center player">Dustin Johnson</li>
+                <li class="list-group-item d-flex justify-content-between align-items-center player">Brooks Koepka</li>
+                <li class="list-group-item d-flex justify-content-between align-items-center player">Branden Grace</li>
+                <li class="list-group-item d-flex justify-content-between align-items-center player">Webb Simpson</li>
+                <li class="list-group-item d-flex justify-content-between align-items-center player">Jimmy Walker</li>
+                <li class="list-group-item d-flex justify-content-between align-items-center player">Daniel Berger</li>
+            </ul>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-sm-6 col-12">
+            <h4 class="captain">Billy</h4>
+            <ul class="list-group team">
+                <li class="list-group-item d-flex justify-content-between align-items-center player">Justin Rose</li>
+                <li class="list-group-item d-flex justify-content-between align-items-center player">Jason Day</li>
+                <li class="list-group-item d-flex justify-content-between align-items-center player">Tommy Fleetwood</li>
+                <li class="list-group-item d-flex justify-content-between align-items-center player">Bubba Watson</li>
+                <li class="list-group-item d-flex justify-content-between align-items-center player">Brian Harman</li>
+                <li class="list-group-item d-flex justify-content-between align-items-center player">Matthew Fitzpatrick</li>
+            </ul>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-sm-6 col-12">
+            <h4 class="captain">Cassidy</h4>
+            <ul class="list-group team">
+                <li class="list-group-item d-flex justify-content-between align-items-center player">Jordan Spieth</li>
+                <li class="list-group-item d-flex justify-content-between align-items-center player">Henrik Stenson</li>
+                <li class="list-group-item d-flex justify-content-between align-items-center player">Bryson DeChambeau</li>
+                <li class="list-group-item d-flex justify-content-between align-items-center player">Xander Schauffele</li>
+                <li class="list-group-item d-flex justify-content-between align-items-center player">Byeong Hun An</li>
+                <li class="list-group-item d-flex justify-content-between align-items-center player">Jason Dufner</li>
+            </ul>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-sm-6 col-12">
+            <h4 class="captain">Chris</h4>
+            <ul class="list-group team">
+                <li class="list-group-item d-flex justify-content-between align-items-center player">Jon Rahm</li>
+                <li class="list-group-item d-flex justify-content-between align-items-center player">Phil Mickelson</li>
+                <li class="list-group-item d-flex justify-content-between align-items-center player">Sergio Garcia</li>
+                <li class="list-group-item d-flex justify-content-between align-items-center player">Luke List</li>
+                <li class="list-group-item d-flex justify-content-between align-items-center player">Kevin Kisner</li>
+                <li class="list-group-item d-flex justify-content-between align-items-center player">Charl Schwartzel</li>
+            </ul>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-sm-6 col-12">
+            <h4 class="captain">Brooks</h4>
+            <ul class="list-group team">
+                <li class="list-group-item d-flex justify-content-between align-items-center player">Tiger Woods</li>
+                <li class="list-group-item d-flex justify-content-between align-items-center player">Hideki Matsuyama</li>
+                <li class="list-group-item d-flex justify-content-between align-items-center player">Paul Casey</li>
+                <li class="list-group-item d-flex justify-content-between align-items-center player">Adam Scott</li>
+                <li class="list-group-item d-flex justify-content-between align-items-center player">Patrick Cantlay</li>
+                <li class="list-group-item d-flex justify-content-between align-items-center player">Kyle Stanley</li>
+            </ul>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-sm-6 col-12">
+            <h4 class="captain">Jackson</h4>
+            <ul class="list-group team">
+                <li class="list-group-item d-flex justify-content-between align-items-center player">Rory McIlroy</li>
+                <li class="list-group-item d-flex justify-content-between align-items-center player">Rickie Fowler</li>
+                <li class="list-group-item d-flex justify-content-between align-items-center player">Matt Kuchar</li>
+                <li class="list-group-item d-flex justify-content-between align-items-center player">Marc Leishman</li>
+                <li class="list-group-item d-flex justify-content-between align-items-center player">Brandt Snedeker</li>
+                <li class="list-group-item d-flex justify-content-between align-items-center player">Francesco Molinari</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+
+<script src="ffg.js"></script>
+</html>
