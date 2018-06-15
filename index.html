@@ -7,6 +7,7 @@
     <script src="moment.js"></script>
     <script src="jquery-3.3.1.min.js"></script>
     <script src="bootstrap.bundle.min.js"></script>
+    <script src="list.min.js"></script>
 </head>
 
 <body>
@@ -28,19 +29,12 @@
                             </button>
                         </div>
                         <div class="modal-body" style="overflow:auto;">
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th></th>
-                                    <th>Name</th>
-                                    <th>Score</th>
-                                    <th>Thru</th>
-                                </tr>
-                                </thead>
-                                <tbody class="leaderboard">
-
-                                </tbody>
-                            </table>
+                            <div id="leaderboard">
+                                <input class="search" placeholder="Search" />
+                                <button class="sort" data-sort="name">Sort by Name</button>
+                                <button class="sort" data-sort="position">Sort by Position</button>
+                                <ul class="list list-group list-group-flush"></ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -52,81 +46,81 @@
             <h1>2018 US Open Golf Draft</h1>
         </div>
 
-        <div class="col-xl-3 col-lg-4 col-sm-6 col-12">
-            <h4 class="captain">Tosh</h4>
-            <ul class="list-group team">
-                <li class="list-group-item d-flex justify-content-between align-items-center player">Justin Thomas</li>
-                <li class="list-group-item d-flex justify-content-between align-items-center player">Patrick Reed</li>
-                <li class="list-group-item d-flex justify-content-between align-items-center player">Alex Noren</li>
-                <li class="list-group-item d-flex justify-content-between align-items-center player">Louis Oosthuizen</li>
-                <li class="list-group-item d-flex justify-content-between align-items-center player">Tony Finau</li>
-                <li class="list-group-item d-flex justify-content-between align-items-center player">Martin Kaymer</li>
+        <div class="col-lg-4 col-md-6 col-12 team">
+            <h3 class="captain pt-4">Tosh</h3>
+            <ul class="list list-group list-group-flush">
+                <li class="player list-group-item">Justin Thomas</li>
+                <li class="player list-group-item">Patrick Reed</li>
+                <li class="player list-group-item">Alex Noren</li>
+                <li class="player list-group-item">Louis Oosthuizen</li>
+                <li class="player list-group-item">Tony Finau</li>
+                <li class="player list-group-item">Martin Kaymer</li>
             </ul>
         </div>
-        <div class="col-xl-3 col-lg-4 col-sm-6 col-12">
-            <h4 class="captain">Will</h4>
-            <ul class="list-group team">
-                <li class="list-group-item d-flex justify-content-between align-items-center player">Dustin Johnson</li>
-                <li class="list-group-item d-flex justify-content-between align-items-center player">Brooks Koepka</li>
-                <li class="list-group-item d-flex justify-content-between align-items-center player">Branden Grace</li>
-                <li class="list-group-item d-flex justify-content-between align-items-center player">Webb Simpson</li>
-                <li class="list-group-item d-flex justify-content-between align-items-center player">Jimmy Walker</li>
-                <li class="list-group-item d-flex justify-content-between align-items-center player">Daniel Berger</li>
+        <div class="col-lg-4 col-md-6 col-12 team">
+            <h3 class="captain pt-4">Will</h3>
+            <ul class="list list-group list-group-flush">
+                <li class="player list-group-item">Dustin Johnson</li>
+                <li class="player list-group-item">Brooks Koepka</li>
+                <li class="player list-group-item">Branden Grace</li>
+                <li class="player list-group-item">Webb Simpson</li>
+                <li class="player list-group-item">Jimmy Walker</li>
+                <li class="player list-group-item">Daniel Berger</li>
             </ul>
         </div>
-        <div class="col-xl-3 col-lg-4 col-sm-6 col-12">
-            <h4 class="captain">Billy</h4>
-            <ul class="list-group team">
-                <li class="list-group-item d-flex justify-content-between align-items-center player">Justin Rose</li>
-                <li class="list-group-item d-flex justify-content-between align-items-center player">Jason Day</li>
-                <li class="list-group-item d-flex justify-content-between align-items-center player">Tommy Fleetwood</li>
-                <li class="list-group-item d-flex justify-content-between align-items-center player">Bubba Watson</li>
-                <li class="list-group-item d-flex justify-content-between align-items-center player">Brian Harman</li>
-                <li class="list-group-item d-flex justify-content-between align-items-center player">Matthew Fitzpatrick</li>
+        <div class="col-lg-4 col-md-6 col-12 team">
+            <h3 class="captain pt-4">Billy</h3>
+            <ul class="list list-group list-group-flush">
+                <li class="player list-group-item">Justin Rose</li>
+                <li class="player list-group-item">Jason Day</li>
+                <li class="player list-group-item">Tommy Fleetwood</li>
+                <li class="player list-group-item">Bubba Watson</li>
+                <li class="player list-group-item">Brian Harman</li>
+                <li class="player list-group-item">Matthew Fitzpatrick</li>
             </ul>
         </div>
-        <div class="col-xl-3 col-lg-4 col-sm-6 col-12">
-            <h4 class="captain">Cassidy</h4>
-            <ul class="list-group team">
-                <li class="list-group-item d-flex justify-content-between align-items-center player">Jordan Spieth</li>
-                <li class="list-group-item d-flex justify-content-between align-items-center player">Henrik Stenson</li>
-                <li class="list-group-item d-flex justify-content-between align-items-center player">Bryson DeChambeau</li>
-                <li class="list-group-item d-flex justify-content-between align-items-center player">Xander Schauffele</li>
-                <li class="list-group-item d-flex justify-content-between align-items-center player">Byeong Hun An</li>
-                <li class="list-group-item d-flex justify-content-between align-items-center player">Jason Dufner</li>
+        <div class="col-lg-4 col-md-6 col-12 team">
+            <h3 class="captain pt-4">Cassidy</h3>
+            <ul class="list list-group list-group-flush">
+                <li class="player list-group-item">Jordan Spieth</li>
+                <li class="player list-group-item">Henrik Stenson</li>
+                <li class="player list-group-item">Bryson DeChambeau</li>
+                <li class="player list-group-item">Xander Schauffele</li>
+                <li class="player list-group-item">Byeong Hun An</li>
+                <li class="player list-group-item">Jason Dufner</li>
             </ul>
         </div>
-        <div class="col-xl-3 col-lg-4 col-sm-6 col-12">
-            <h4 class="captain">Chris</h4>
-            <ul class="list-group team">
-                <li class="list-group-item d-flex justify-content-between align-items-center player">Jon Rahm</li>
-                <li class="list-group-item d-flex justify-content-between align-items-center player">Phil Mickelson</li>
-                <li class="list-group-item d-flex justify-content-between align-items-center player">Sergio Garcia</li>
-                <li class="list-group-item d-flex justify-content-between align-items-center player">Luke List</li>
-                <li class="list-group-item d-flex justify-content-between align-items-center player">Kevin Kisner</li>
-                <li class="list-group-item d-flex justify-content-between align-items-center player">Charl Schwartzel</li>
+        <div class="col-lg-4 col-md-6 col-12 team">
+            <h3 class="captain pt-4">Chris</h3>
+            <ul class="list list-group list-group-flush">
+                <li class="player list-group-item">Jon Rahm</li>
+                <li class="player list-group-item">Phil Mickelson</li>
+                <li class="player list-group-item">Sergio Garcia</li>
+                <li class="player list-group-item">Luke List</li>
+                <li class="player list-group-item">Kevin Kisner</li>
+                <li class="player list-group-item">Charl Schwartzel</li>
             </ul>
         </div>
-        <div class="col-xl-3 col-lg-4 col-sm-6 col-12">
-            <h4 class="captain">Brooks</h4>
-            <ul class="list-group team">
-                <li class="list-group-item d-flex justify-content-between align-items-center player">Tiger Woods</li>
-                <li class="list-group-item d-flex justify-content-between align-items-center player">Hideki Matsuyama</li>
-                <li class="list-group-item d-flex justify-content-between align-items-center player">Paul Casey</li>
-                <li class="list-group-item d-flex justify-content-between align-items-center player">Adam Scott</li>
-                <li class="list-group-item d-flex justify-content-between align-items-center player">Patrick Cantlay</li>
-                <li class="list-group-item d-flex justify-content-between align-items-center player">Kyle Stanley</li>
+        <div class="col-lg-4 col-md-6 col-12 team">
+            <h3 class="captain pt-4">Brooks</h3>
+            <ul class="list list-group list-group-flush">
+                <li class="player list-group-item">Tiger Woods</li>
+                <li class="player list-group-item">Hideki Matsuyama</li>
+                <li class="player list-group-item">Paul Casey</li>
+                <li class="player list-group-item">Adam Scott</li>
+                <li class="player list-group-item">Patrick Cantlay</li>
+                <li class="player list-group-item">Kyle Stanley</li>
             </ul>
         </div>
-        <div class="col-xl-3 col-lg-4 col-sm-6 col-12">
-            <h4 class="captain">Jackson</h4>
-            <ul class="list-group team">
-                <li class="list-group-item d-flex justify-content-between align-items-center player">Rory McIlroy</li>
-                <li class="list-group-item d-flex justify-content-between align-items-center player">Rickie Fowler</li>
-                <li class="list-group-item d-flex justify-content-between align-items-center player">Matt Kuchar</li>
-                <li class="list-group-item d-flex justify-content-between align-items-center player">Marc Leishman</li>
-                <li class="list-group-item d-flex justify-content-between align-items-center player">Brandt Snedeker</li>
-                <li class="list-group-item d-flex justify-content-between align-items-center player">Francesco Molinari</li>
+        <div class="col-lg-4 col-md-6 col-12 team">
+            <h3 class="captain pt-4">Jackson</h3>
+            <ul class="list list-group list-group-flush">
+                <li class="player list-group-item">Rory McIlroy</li>
+                <li class="player list-group-item">Rickie Fowler</li>
+                <li class="player list-group-item">Matt Kuchar</li>
+                <li class="player list-group-item">Marc Leishman</li>
+                <li class="player list-group-item">Brandt Snedeker</li>
+                <li class="player list-group-item">Francesco Molinari</li>
             </ul>
         </div>
     </div>
