@@ -69,12 +69,12 @@ var teamOptions = {
     });
 
 
-    var maxHeight = ($(window).innerHeight() / 2) + "px";
-    $("#leaderboardModal").find(".modal-body").css("max-height", maxHeight);
+    var maxHeight = ($(window).innerHeight() / 1.2) + "px";
+    $("#leaderboardModal").find(".modal-body").css("height", maxHeight);
 
     $(window).on("resize", function () {
-        var maxHeight = ($(window).innerHeight() / 2) + "px";
-        $("#leaderboardModal").find(".modal-body").css("max-height", maxHeight);
+        var maxHeight = ($(window).innerHeight() / 1.22) + "px";
+        $("#leaderboardModal").find(".modal-body").css("height", maxHeight);
     });
 })(jQuery);
 
