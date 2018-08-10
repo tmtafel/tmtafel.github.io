@@ -51,6 +51,8 @@ var teamOptions = {
             var $team = $(teamItem.elm);
             var $name = $team.find("h3");
             var $players = $team.find(".list");
+
+            $players.collapse();
             $name.on("click", function () {
                 $players.collapse('toggle');
             });
