@@ -14,7 +14,7 @@ var teamOptions = {
     valueNames: ['captain', 'score'],
     item: '<li class="list-group-item px-2 team">' +
     '<h3 class="d-flex justify-content-between align-items-center mb-0"><span class="captain"></span><span class="score badge badge-secondary badge-pill"></span></h3>' +
-    '<ul class="list list-group collapse"></ul>' +
+    '<ul class="list list-group"></ul>' +
     '</li>'
 };
 
