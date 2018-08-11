@@ -86,19 +86,26 @@ function Player(player) {
     this.score = player.total;
     this.currentPosition = player.current_position;
     this.rounds = player.rounds;
+    this.cut = player.status === "cut" || player.status === "wd";
     this.name = function () {
         return this.firstName + " " + this.lastName;
     };
     this.teeTime = function () {
+        if (this.cut) return null;
         return moment(player.rounds[this.currentRound - 1].tee_time)
     };
     this.scoreFormatted = function () {
+        if (this.cut) return "MC";
         return this.score === 0 ? "E" : this.score > 0 ? "+" + this.score : this.score;
     }
     this.thru = function () {
+
+        if (this.cut) return null;
         return player.thru === null ? this.teeTime().format('h:mm a') : player.thru === 18 ? this.rounds[this.currentRound - 1].strokes : player.thru;
     };
     this.currentPositionFormatted = function () {
+
+        if (this.cut) return "MC";
         return this.currentPosition == "" ? "" : this.currentPosition.replace('T', '');
     };
     this.hasStarted = function () {
