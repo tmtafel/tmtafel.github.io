@@ -99,12 +99,24 @@ function Player(player) {
         return this.score === 0 ? "E" : this.score > 0 ? "+" + this.score : this.score;
     }
     this.thru = function () {
-
         if (this.cut) return null;
-        return player.thru === null ? this.teeTime().format('h:mm a') : player.thru === 18 ? this.rounds[this.currentRound - 1].strokes : player.thru;
+        if (player.thru === null) {
+            return this.teeTime().format('h:mm a');
+        }
+        if (player.thru === 18) {
+            return this.rounds[this.currentRound - 1].strokes + ' (F)';
+        }
+        var score = this.rounds[this.currentRound - 1];
+        return player.thru + " (" + this.today() + ")" ;
+    };
+    this.today = function () {
+        if(this.cut) return "";
+        if (player.thru === null || player.thru === 18) {
+            return "";
+        }
+        return player.today === 0 ? "E" : player.today > 0 ? "+" + player.today : player.today;
     };
     this.currentPositionFormatted = function () {
-
         if (this.cut) return "MC";
         return this.currentPosition == "" ? "" : this.currentPosition.replace('T', '');
     };
