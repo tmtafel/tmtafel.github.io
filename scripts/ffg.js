@@ -1,10 +1,9 @@
-var CLIENT_ID = "182275868192-nk4ln76b8ph6mq77gfts09scvib0sd39.apps.googleusercontent.com";
-var API_KEY = "AIzaSyBzWzDSeyo8_JKUah7qoXhyxuBRnZYwQrM";
+var CLIENT_ID = "31060014864-5tb66p397smsi6von74q8f2da9hqkqft.apps.googleusercontent.com";
+var API_KEY = "AIzaSyCeEAlryxziNLg4nGoyt92WAsvGovuZDqk";
 var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"];
 var SCOPES = "https://www.googleapis.com/auth/spreadsheets.readonly";
 var SHEET_ID = "11KSg59tZ8ogpJ0W2olMN-c-GJDLB8433GeSOOdgtjA0";
 var authorizeButton = document.getElementById('authorize_button');
-// var signoutButton = document.getElementById('signout_button');
 var teamDiv = document.getElementById('teams');
 
 var playerOptions = {
@@ -38,13 +37,9 @@ function initClient() {
         discoveryDocs: DISCOVERY_DOCS,
         scope: SCOPES
     }).then(function () {
-        // Listen for sign-in state changes.
         gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
-
-        // Handle the initial sign-in state.
         updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
         authorizeButton.onclick = handleAuthClick;
-        // signoutButton.onclick = handleSignoutClick;
     }, function (error) {
         console.log(JSON.stringify(error, null, 2));
     });
@@ -63,10 +58,6 @@ function updateSigninStatus(isSignedIn) {
 
 function handleAuthClick(event) {
     gapi.auth2.getAuthInstance().signIn();
-}
-
-function handleSignoutClick(event) {
-    gapi.auth2.getAuthInstance().signOut();
 }
 
 function getSpreadsheetJson() {
