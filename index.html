@@ -1,137 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
-    <link rel="stylesheet" href="bootstrap.min.css"/>
-    <script src="moment.js"></script>
-    <script src="jquery-3.3.1.min.js"></script>
-    <script src="bootstrap.bundle.min.js"></script>
-    <script src="list.min.js"></script>
-</head>
-<body>
-<div class="container pt-4">
-    <div class="row">
-        <div class="col-md-8 col-7">
-            <h3>2018 PGA Championship Golf Draft</h3>
+
+    <head>
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="styles/bootstrap.min.css" />
+        <script src="scripts/vendor/moment.js"></script>
+        <script src="scripts/vendor/jquery-3.3.1.min.js"></script>
+        <script src="scripts/vendor/bootstrap.bundle.min.js"></script>
+        <script src="scripts/vendor/list.min.js"></script>
+    </head>
+
+    <body>
+        <div class="container pt-4">
+            <div class="row">
+                <div class="col-md-8 col-7">
+                    <h3>2019 MastersGolf Draft</h3>
+                </div>
+                <div class="col-md-4 col-5 text-md-right text-center">
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#leaderboardModal">
+                            Leaderboard
+                        </button>
+                        <button id="authorize_button" class="btn btn-primary" style="display: none;">
+                            Authorize
+                        </button>
+                        <button id="signout_button" class="btn btn-primary" style="display: none;">
+                            Sign Out
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12" id="teams">
+                    <div class="list list-group list-group-flush"></div>
+                </div>
+            </div>
         </div>
-        <div class="col-md-4 col-5 text-md-right text-center">
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#leaderboardModal">
-                Leaderboard
-            </button>
-            <!-- Modal -->
-            <div class="modal fade" id="leaderboardModal" tabindex="-1" role="dialog" aria-labelledby="leaderboardModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="leaderboardModalLabel">Modal title</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body" style="overflow:auto;">
-                            <div id="leaderboard">
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1">Search</span>
-                                    </div>
-                                    <input type="text" class="form-control search" placeholder="Players Name" aria-label="Username" aria-describedby="basic-addon1">
+        <div class="modal fade" id="leaderboardModal" tabindex="-1" role="dialog"
+             aria-labelledby="leaderboardModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="leaderboardModalLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="overflow:auto;">
+                        <div id="leaderboard">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">Search</span>
                                 </div>
-                                <ul class="list list-group list-group-flush"></ul>
+                                <input type="text" class="form-control search" placeholder="Players Name"
+                                       aria-label="Username" aria-describedby="basic-addon1">
                             </div>
+                            <ul class="list list-group list-group-flush"></ul>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div id="teams" class="col-12">
-            <div class="list list-group list-group-flush"></div>
-        </div>
-    </div>
-</div>
-</body>
-<script>
-    var draft = [
-        {
-            "Captain": "Will",
-            "Players": [
-                "Dustin Johnson",
-                "Patrick Reed",
-                "Patrick Cantlay",
-                "Webb Simpson",
-                "Branden Grace",
-                "Zach Johnson"
-            ]
-        },
-        {
-            "Captain": "Billy",
-            "Players": [
-                "Justin Thomas",
-                "Tony Finau",
-                "Xander Schauffele",
-                "Thorbjørn Olesen",
-                "Kyle Stanley",
-                "Gary Woodland"
-            ]
-        },
-        {
-            "Captain": "Chris",
-            "Players": [
-                "Justin Rose",
-                "Francesco Molinari",
-                "Hideki Matsuyama",
-                "Marc Leishman",
-                "Kevin Kisner",
-                "Adam Scott"
-            ]
-        },
-        {
-            "Captain": "Tosh",
-            "Players": [
-                "Rickie Fowler",
-                "Jon Rahm",
-                "Bubba Watson",
-                "Daniel Berger",
-                "Bryson DeChambeau",
-                "Joaquin Niemann"
-            ]
-        },
-        {
-            "Captain": "Jackson",
-            "Players": [
-                "Rory McIlroy",
-                "Tommy Fleetwood",
-                "Paul Casey",
-                "Phil Mickelson",
-                "Kevin Chappell",
-                "J.B. Holmes"
-            ]
-        },
-        {
-            "Captain": "Cassidy",
-            "Players": [
-                "Tiger Woods",
-                "Jason Day",
-                "Sergio Garcia",
-                "Matt Kuchar",
-                "Tyrrell Hatton",
-                "Ian Poulter"
-            ]
-        },
-        {
-            "Captain": "Brooks",
-            "Players": [
-                "Jordan Spieth",
-                "Brooks Koepka",
-                "Alex Noren",
-                "Henrik Stenson",
-                "Thomas Pieters",
-                "Charley Hoffman"
-            ]
-        }
-    ];
-</script>
-<script src="ffg.js"></script>
+        <script src="scripts/ffg.js"></script>
+        <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()"
+                onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
+    </body>
+
 </html>
