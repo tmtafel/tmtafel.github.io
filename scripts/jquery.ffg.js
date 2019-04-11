@@ -21,7 +21,7 @@ $(document).ready(function () {
                     }
                 }
 
-                if (statdata === null) {
+                if (statdata === null || typeof statdata === 'undefined') {
                     $.getJSON("https://statdata.pgatour.com/r/current/leaderboard-v2mini.json", function (result) {
                         statdata = result;
                         localStorage.statdata = JSON.stringify(result);
