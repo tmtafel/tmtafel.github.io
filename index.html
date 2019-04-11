@@ -15,24 +15,20 @@
         <div class="container pt-4">
             <div class="row">
                 <div class="col-md-8 col-7">
-                    <h3>2019 MastersGolf Draft</h3>
+                    <h3>2019 Masters Golf Draft</h3>
                 </div>
                 <div class="col-md-4 col-5 text-md-right text-center">
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-primary" data-toggle="modal"
-                                data-target="#leaderboardModal">
-                            Leaderboard
-                        </button>
-                        <button id="authorize_button" class="btn btn-primary" style="display: none;">
-                            Authorize
-                        </button>
-                        <button id="signout_button" class="btn btn-primary" style="display: none;">
-                            Sign Out
-                        </button>
-                    </div>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#leaderboardModal">
+                        Leaderboard
+                    </button>
                 </div>
             </div>
             <div class="row">
+                <div class="col-12">
+                    <button id="authorize_button" class="btn btn-primary" style="display: none;">
+                        Authorize
+                    </button>
+                </div>
                 <div class="col-12" id="teams">
                     <div class="list list-group list-group-flush"></div>
                 </div>
@@ -64,6 +60,7 @@
             </div>
         </div>
         <script src="scripts/ffg.js"></script>
+        <script src="scripts/jquery.ffg.js"></script>
         <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()"
                 onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
     </body>

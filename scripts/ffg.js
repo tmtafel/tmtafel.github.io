@@ -4,7 +4,7 @@ var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"
 var SCOPES = "https://www.googleapis.com/auth/spreadsheets.readonly";
 var SHEET_ID = "11KSg59tZ8ogpJ0W2olMN-c-GJDLB8433GeSOOdgtjA0";
 var authorizeButton = document.getElementById('authorize_button');
-var signoutButton = document.getElementById('signout_button');
+// var signoutButton = document.getElementById('signout_button');
 var teamDiv = document.getElementById('teams');
 
 var playerOptions = {
@@ -22,9 +22,9 @@ var playerOptions = {
 var teamOptions = {
     valueNames: ['captain', 'score'],
     item: '<li class="list-group-item px-2 team">' +
-    '<h3 class="d-flex justify-content-between align-items-center mb-0"><span class="captain"></span><span class="score badge badge-secondary badge-pill"></span></h3>' +
-    '<ul class="list list-group"></ul>' +
-    '</li>'
+        '<h3 class="d-flex justify-content-between align-items-center mb-0"><span class="captain"></span><span class="score badge badge-secondary badge-pill"></span></h3>' +
+        '<ul class="list list-group"></ul>' +
+        '</li>'
 };
 
 function handleClientLoad() {
@@ -44,7 +44,7 @@ function initClient() {
         // Handle the initial sign-in state.
         updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
         authorizeButton.onclick = handleAuthClick;
-        signoutButton.onclick = handleSignoutClick;
+        // signoutButton.onclick = handleSignoutClick;
     }, function (error) {
         appendPre(JSON.stringify(error, null, 2));
     });
@@ -53,11 +53,11 @@ function initClient() {
 function updateSigninStatus(isSignedIn) {
     if (isSignedIn) {
         authorizeButton.style.display = 'none';
-        signoutButton.style.display = 'block';
+        // signoutButton.style.display = 'block';
         getSpreadsheetJson();
     } else {
         authorizeButton.style.display = 'block';
-        signoutButton.style.display = 'none';
+        // signoutButton.style.display = 'none';
     }
 }
 
@@ -74,7 +74,21 @@ function getSpreadsheetJson() {
         spreadsheetId: SHEET_ID,
         range: 'A2:G8',
     }).then(function (response) {
-        teamDiv.dataset.draft = response.result.values;
+        var draft = response.result.values;
+        var teams = [];
+        for (var i = 0; i < draft.length; i++) {
+            var players = [];
+            for (var j = 1; j < draft[i].length; j++) {
+                players.push(draft[i][j]);
+            }
+            var team = {
+                "Captain": draft[i][0],
+                "Players": players
+            };
+            teams.push(team);
+        }
+        console.log(teams);
+        teamDiv.dataset.draft = JSON.stringify(teams);
     }, function (response) {
         alert("Error check logs for response");
         console.log(response);
@@ -177,69 +191,3 @@ function Player(player) {
         };
     };
 }
-
-$(document).ready(function () {
-    var $teams = $("#teams");
-    var draft = $teams.data("draft");
-    if (typeof draft === "undefined" || draft === null) {
-        $teams.on('DOMSubtreeModified', function () {
-            draft = $teams.data("draft");
-            if (typeof draft !== "undefined" && draft !== null) {
-                $.getJSON("https://statdata.pgatour.com/r/current/leaderboard-v2mini.json", function (result) {
-                    var leaderboard = [];
-                    var players = [];
-                    $(result.leaderboard.players).each(function () {
-                        var p = new Player(this);
-                        leaderboard.push(p.listItem());
-                        players.push(p);
-                    });
-                    var leaderboardList = new List('leaderboard', playerOptions, leaderboard);
-
-                    var teams = [];
-                    $(draft).each(function (tIndex, t) {
-                        var team = new Team(t[0]);
-                        for (var i = 1; i < t.length; i++) {
-                            var playerName = t[i];
-                            $(players).each(function (pIndex, player) {
-                                if (player.name() === playerName) {
-                                    team.addPlayer(player);
-                                }
-                            });
-                        }
-                        teams.push(team.listItem());
-                    });
-
-                    var teamList = new List("teams", teamOptions, teams);
-                    // teamList.sort('score', {order: "desc"});
-                    // $(teamList.items).each(function (tIndex, teamItem) {
-                    //     var $team = $(teamItem.elm);
-                    //     var $name = $team.find("h3");
-                    //     var $players = $team.find(".list");
-
-                    //     $players.collapse();
-                    //     $name.on("click", function () {
-                    //         $players.collapse('toggle');
-                    //     });
-                    //     var teamPlayers = teamItem.values().players;
-                    //     var playerList = new Array();
-                    //     $(teamPlayers).each(function (pIndex, teamPlayer) {
-                    //         playerList.push(teamPlayer.listItem());
-                    //     });
-                    //     var teamPlayerList = new List(teamItem.elm, playerOptions, playerList);
-                    //     teamPlayerList.sort('position', {order: "asc"});
-
-                    // });
-
-                });
-            }
-        });
-    }
-
-    var maxHeight = ($(window).innerHeight() / 1.2) + "px";
-    $("#leaderboardModal").find(".modal-body").css("height", maxHeight);
-
-    $(window).on("resize", function () {
-        var maxHeight = ($(window).innerHeight() / 1.2) + "px";
-        $("#leaderboardModal").find(".modal-body").css("height", maxHeight);
-    });
-});
