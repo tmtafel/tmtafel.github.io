@@ -7,10 +7,10 @@ $(document).ready(function () {
             if (typeof draft !== "undefined" && draft !== null) {
                 $teams.off();
                 var statdata = localStorage.statdata;
-                if (statdata !== null) {
+                if (statdata !== null && typeof statdata !== 'undefined') {
                     statdata = JSON.parse(localStorage.statdata);
                 }
-                if (statdata !== null) {
+                if (statdata !== null && typeof statdata !== 'undefined') {
                     var lastUpdated = moment(statdata.last_updated);
                     var now = moment(Date.now());
                     var ms = moment(now, "DD/MM/YYYY HH:mm:ss").diff(moment(lastUpdated, "DD/MM/YYYY HH:mm:ss"));
@@ -90,7 +90,7 @@ $(document).ready(function () {
                 $players.collapse('toggle');
             });
             var teamPlayers = teamItem.values().players;
-            var playerList = new Array();
+            var playerList = [];
             $(teamPlayers).each(function (pIndex, teamPlayer) {
                 playerList.push(teamPlayer.listItem());
             });
