@@ -3,20 +3,32 @@
     var $timestamp = $("#timestamp");
     var $leaderboard = $("#leaderboard");
     var playerOptions = {
-        valueNames: ['name', 'score', 'thru', 'position'],
-        item: '<li class="list-group-item px-2">' +
-            '<div class="row">' +
-            '<div class="col-2 text-left"><span class="position"></span></div>' +
-            '<div class="col-5 text-left"><span class="name"></span></div>' +
-            '<div class="col-3 text-right"><span class="thru"></span></div>' +
-            '<div class="col-2 text-right"><span class="score"></span></div>' +
+        valueNames: ['id', 'name', 'firstname', 'lastname', 'score', 'thru', 'position', 'captain'],
+        item: '<li class="list-group-item p-0 d-flex">' +
+            '<div class="px-2 col-1 d-flex align-items-center justify-content-center">' +
+            '<span class="position"></span>' +
+            '</div>' +
+            '<div class="px-2 col-6">' +
+            '<div class="d-flex flex-column">' +
+            '<span class="firstname"></span>' +
+            '<span class="lastname"></span>' +
+            '</div>' +
+            '</div>' +
+            '<div class="px-2 col-5 d-flex flex-column justify-content-between">' +
+            '<div class="d-flex">' +
+            '<div class="px-0 text-right col-7"><span class="thru"></span></div>' +
+            '<div class="pl-2 pr-0 text-right col-5"><span class="score"></span></div>' +
+            '</div>' +
+            '<p class="d-flex align-items-end justify-content-end mb-0">' +
+            '<small class="captain"></h6>' +
+            '</div>' +
             '</div>' +
             '</li>'
     };
 
     var teamOptions = {
         valueNames: ['captain', 'score'],
-        item: '<li class="list-group-item px-2 team">' +
+        item: '<li class="list-group-item px-0 team">' +
             '<h3 class="d-flex justify-content-between align-items-center mb-0"><span class="captain"></span><span class="score badge badge-secondary badge-pill"></span></h3>' +
             '<ul class="list list-group collapse"></ul>' +
             '</li>'
@@ -31,20 +43,16 @@
     });
 
     function UpdateScores() {
-        $.when($.getJSON("draft.json"), $.getJSON("https://statdata.pgatour.com/r/current/leaderboard-v2mini.json")).done(function (draftRet, statdataRet) {
-
-            var statdata = statdataRet[0];
+        $.when($.getJSON("draft.json"), GetStatData()).done(function (draftRet, statdata) {
             var draft = draftRet[0];
             var players = [];
-            var leaderboard = [];
+            var leaderboardPlayers = [];
             $(statdata.leaderboard.players).each(function () {
                 var p = new Player(this);
+                var lp = new Player(this);
                 players.push(p);
-                leaderboard.push(p.listItem());
+                leaderboardPlayers.push(lp);
             });
-            var leaderboardList = new List('leaderboard', playerOptions, leaderboard);
-            var lastUpdated = moment(statdata.last_updated);
-            $timestamp.text(lastUpdated.format("ddd, h:mma"));
             var teams = [];
             $(draft).each(function (tIndex, t) {
                 var team = new Team(t.Captain);
@@ -55,15 +63,17 @@
                         if (player.name() === tp) {
                             playerFound = true;
                             team.addPlayer(player);
+                            leaderboardPlayers[pIndex].addCaptain(team.captain);
                         }
                     });
-                    if (!playerFound) {
-                        console.log("could not find player '" + tp + "' for Team " + team.captain);
-                    }
                 });
                 teams.push(team.listItem());
             });
-
+            var leaderboard = [];
+            $(leaderboardPlayers).each(function (pIndex, player) {
+                leaderboard.push(player.listItem());
+            });
+            var leaderboardList = new List('leaderboard', playerOptions, leaderboard);
             var teamList = new List("teams", teamOptions, teams);
             teamList.sort('score', {
                 order: "desc"
@@ -72,6 +82,7 @@
                 var $team = $(teamItem.elm);
                 var $name = $team.find("h3");
                 var $players = $team.find(".list");
+                if (tIndex === 0) $players.collapse('toggle');
                 $name.on("click", function () {
                     $players.collapse('toggle');
                 });
@@ -86,7 +97,31 @@
                 });
             });
         });
+    }
 
+    function GetStatData() {
+        var dfd = $.Deferred();
+        var statdata = localStorage.statdata === 'undefined' ? null : localStorage.statdata;
+        if (statdata !== null) {
+            try {
+                statdata = JSON.parse(localStorage.statdata);
+                var lastUpdated = moment(statdata.last_updated);
+                var now = moment(Date.now());
+                var ms = moment(now, "DD/MM/YYYY HH:mm:ss").diff(moment(lastUpdated, "DD/MM/YYYY HH:mm:ss"));
+                var d = moment.duration(ms);
+                var minuteDifference = Math.floor(d.asMinutes());
+                if (minuteDifference < 5) {
+                    return statdata;
+                }
+            } catch (ex) {
+                console.log(ex);
+            }
+        }
+        $.getJSON("https://statdata.pgatour.com/r/current/leaderboard-v2mini.json", function (result) {
+            localStorage.statdata = JSON.stringify(result);
+            dfd.resolve(result);
+        });
+        return dfd.promise();
     }
 
     function Team(captain) {
@@ -127,7 +162,7 @@
                 captain: this.captain,
                 score: this.scoreFormatted(),
                 players: this.playersLive
-            }
+            };
         };
     }
 
@@ -142,6 +177,10 @@
         this.cut = player.status === "cut" || player.status === "wd";
         this.name = function () {
             return this.firstName + " " + this.lastName;
+        };
+        this.captain = null;
+        this.addCaptain = function (name) {
+            this.captain = "*" + name;
         };
         this.teeTime = function () {
             if (this.cut) return null;
@@ -178,10 +217,14 @@
         };
         this.listItem = function () {
             return {
+                id: this.id,
                 position: this.currentPositionFormatted(),
+                firstname: this.firstName,
+                lastname: this.lastName,
                 name: this.name(),
                 score: this.scoreFormatted(),
-                thru: this.thru()
+                thru: this.thru(),
+                captain: this.captain
             };
         };
     }
