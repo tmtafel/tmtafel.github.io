@@ -2,8 +2,7 @@
 <html lang="en">
 
     <head>
-        <meta name="viewport"
-              content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
         <link rel="stylesheet" href="styles/bootstrap.min.css" />
         <script src="scripts/vendor/moment.js"></script>
         <script src="scripts/vendor/jquery-3.3.1.min.js"></script>
@@ -14,28 +13,20 @@
     <body>
         <div class="container pt-4">
             <div class="row">
-                <div class="col-md-8 col-7">
+                <div class="col-md-6 col-12">
                     <h3>2019 Masters Golf Draft</h3>
                 </div>
-                <div class="col-md-4 col-5 text-md-right text-center">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#leaderboardModal">
-                        Leaderboard
-                    </button>
+                <div class="col-md-6 col-12 d-flex justify-content-end">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#leaderboardModal">Leaderboard</button>
                 </div>
             </div>
             <div class="row">
-                <div class="col-12">
-                    <button id="authorize_button" class="btn btn-primary">
-                        Authorize
-                    </button>
-                </div>
                 <div class="col-12" id="teams">
                     <div class="list list-group list-group-flush"></div>
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="leaderboardModal" tabindex="-1" role="dialog"
-             aria-labelledby="leaderboardModalLabel" aria-hidden="true">
+        <div class="modal fade" id="leaderboardModal" tabindex="-1" role="dialog" aria-labelledby="leaderboardModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -50,8 +41,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1">Search</span>
                                 </div>
-                                <input type="text" class="form-control search" placeholder="Players Name"
-                                       aria-label="Username" aria-describedby="basic-addon1">
+                                <input type="text" class="form-control search" placeholder="Players Name" aria-label="Username" aria-describedby="basic-addon1">
                             </div>
                             <ul class="list list-group list-group-flush"></ul>
                         </div>
@@ -59,10 +49,7 @@
                 </div>
             </div>
         </div>
-        <script src="scripts/ffg.js"></script>
         <script src="scripts/jquery.ffg.js"></script>
-        <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()"
-                onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
     </body>
 
 </html>
