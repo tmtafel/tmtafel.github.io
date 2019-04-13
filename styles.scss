@@ -1,0 +1,21 @@
+@import "node_modules/bootstrap/scss/bootstrap";
+
+body {
+    .team {
+        h3 {
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+
+    }
+
+    #leaderboard {
+
+        .firstname,
+        .lastname {
+            line-height: 1.2rem;
+        }
+    }
+}

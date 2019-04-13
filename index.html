@@ -3,18 +3,21 @@
 
     <head>
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
-        <link rel="stylesheet" href="styles/bootstrap.min.css" />
+        <link rel="stylesheet" href="styles.css" />
         <script src="scripts/vendor/moment.js"></script>
         <script src="scripts/vendor/jquery-3.3.1.min.js"></script>
         <script src="scripts/vendor/bootstrap.bundle.min.js"></script>
         <script src="scripts/vendor/list.min.js"></script>
+        <script src="node_modules/@fortawesome/fontawesome-free/js/all.min.js"></script>
     </head>
 
     <body>
-        <div class="container pt-4">
+        <div class="container">
             <div class="row">
-                <div class="col-12 d-flex justify-content-end">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#leaderboardModal">Leaderboard</button>
+                <div class="col-12 d-flex flex-column p-2">
+                    <h3 class="d-flex justify-content-between"><i class="fas fa-golf-ball"></i><span id="tournamentName"></span><i class="fas fa-golf-ball"></i>
+                    </h3>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#leaderboardModal">Leaderboard</button>
                 </div>
             </div>
             <div class="row">

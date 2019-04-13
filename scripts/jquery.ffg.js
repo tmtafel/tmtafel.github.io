@@ -1,27 +1,17 @@
 (function ($) {
-    var $refresh = $("#refresh");
-    var $timestamp = $("#timestamp");
-    var $leaderboard = $("#leaderboard");
     var playerOptions = {
-        valueNames: ['id', 'name', 'firstname', 'lastname', 'score', 'thru', 'position', 'captain'],
-        item: '<li class="list-group-item p-0 d-flex">' +
-            '<div class="px-2 col-1 d-flex align-items-center justify-content-center">' +
-            '<span class="position"></span>' +
+        valueNames: ['firstname', 'lastname', 'score', 'thru', 'position', 'captain'],
+        item: '<li class="list-group-item px-0 py-1 d-flex">' +
+            '<div class="col-1 pl-0 pr-2 d-flex align-items-center justify-content-center"><h4 class="position m-0"></h4></div>' +
+
+            '<div class="col-5 px-2 d-flex align-items-center justify-content-start">' +
+            '<div class="d-flex flex-column"><p class="firstname m-0"></p><p class="lastname m-0"></p></div>' +
             '</div>' +
-            '<div class="px-2 col-6">' +
-            '<div class="d-flex flex-column">' +
-            '<span class="firstname"></span>' +
-            '<span class="lastname"></span>' +
-            '</div>' +
-            '</div>' +
-            '<div class="px-2 col-5 d-flex flex-column justify-content-between">' +
-            '<div class="d-flex">' +
-            '<div class="px-0 text-right col-7"><span class="thru"></span></div>' +
-            '<div class="pl-2 pr-0 text-right col-5"><span class="score"></span></div>' +
-            '</div>' +
-            '<p class="d-flex align-items-end justify-content-end mb-0">' +
-            '<small class="captain"></h6>' +
-            '</div>' +
+
+            '<div class="col-3 px-2 d-flex align-items-center justify-content-center"><h5 class="thru m-0"></h5></div>' +
+
+            '<div class="col-3 pl-2 pr-0 d-flex flex-column align-items-end justify-content-between">' +
+            '<h6 class="score m-0"></h6><p class="m-0"><small class="captain font-weight-bold"></small></p>' +
             '</div>' +
             '</li>'
     };
@@ -29,8 +19,18 @@
     var teamOptions = {
         valueNames: ['captain', 'score'],
         item: '<li class="list-group-item px-0 team">' +
-            '<h3 class="d-flex justify-content-between align-items-center mb-0"><span class="captain"></span><span class="score badge badge-secondary badge-pill"></span></h3>' +
+            '<h3 class="d-flex justify-content-between align-items-center"><span class="captain"></span><span class="score badge badge-secondary badge-pill"></span></h3>' +
             '<ul class="list list-group collapse"></ul>' +
+            '</li>'
+    };
+
+    var playerTeamOptions = {
+        valueNames: ['name', 'score', 'thru', 'position'],
+        item: '<li class="list-group-item p-0 d-flex">' +
+            '<div class="col-1 pl-0 pr-2"><span class="position"></span></div>' +
+            '<div class="col-7 px-2"><span class="name"></span></div>' +
+            '<div class="col-3 px-2 text-right"><span class="thru"></span></div>' +
+            '<div class="col-1 pl-2 pr-0 text-right"><span class="score"></span></div>' +
             '</li>'
     };
 
@@ -44,6 +44,9 @@
 
     function UpdateScores() {
         $.when($.getJSON("draft.json"), GetStatData()).done(function (draftRet, statdata) {
+            var lastUpdated = moment(statdata.last_updated);
+            $("#tournamentName").text(statdata.leaderboard.tournament_name);
+            $("#leaderboardModalLabel").text("Updated: " + lastUpdated.format("ddd, h:mma"));
             var draft = draftRet[0];
             var players = [];
             var leaderboardPlayers = [];
@@ -91,7 +94,7 @@
                 $(teamPlayers).each(function (pIndex, teamPlayer) {
                     playerList.push(teamPlayer.listItem());
                 });
-                var teamPlayerList = new List(teamItem.elm, playerOptions, playerList);
+                var teamPlayerList = new List(teamItem.elm, playerTeamOptions, playerList);
                 teamPlayerList.sort('position', {
                     order: "asc"
                 });
