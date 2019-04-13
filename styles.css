@@ -10565,6 +10565,10 @@ body .team h3:hover {
   cursor: pointer;
 }
 
+body #leaderboard .list {
+  -webkit-overflow-scrolling: touch;
+}
+
 body #leaderboard .firstname,
 body #leaderboard .lastname {
   line-height: 1.2rem;

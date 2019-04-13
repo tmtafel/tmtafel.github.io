@@ -183,7 +183,7 @@
         };
         this.captain = null;
         this.addCaptain = function (name) {
-            this.captain = "*" + name;
+            this.captain = name;
         };
         this.teeTime = function () {
             if (this.cut) return null;

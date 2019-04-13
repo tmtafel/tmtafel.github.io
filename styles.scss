@@ -12,6 +12,10 @@ body {
     }
 
     #leaderboard {
+        .list {
+
+            -webkit-overflow-scrolling: touch;
+        }
 
         .firstname,
         .lastname {
