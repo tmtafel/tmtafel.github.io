@@ -1,7 +1,8 @@
 (function ($) {
     var playerOptions = {
-        valueNames: ['firstname', 'lastname', 'score', 'thru', 'position', 'captain'],
+        valueNames: ['id', 'firstname', 'lastname', 'score', 'thru', 'position', 'captain'],
         item: '<li class="list-group-item px-0 py-1 d-flex">' +
+            '<span class="id d-none"></span>' +
             '<div class="col-1 pl-0 pr-2 d-flex align-items-center justify-content-center"><h4 class="position m-0"></h4></div>' +
 
             '<div class="col-5 px-2 d-flex align-items-center justify-content-start">' +
@@ -25,8 +26,9 @@
     };
 
     var playerTeamOptions = {
-        valueNames: ['name', 'score', 'thru', 'position'],
+        valueNames: ['id', 'name', 'score', 'thru', 'position'],
         item: '<li class="list-group-item p-0 d-flex">' +
+            '<span class="id d-none"></span>' +
             '<div class="col-1 pl-0 pr-2"><span class="position"></span></div>' +
             '<div class="col-7 px-2"><span class="name"></span></div>' +
             '<div class="col-3 px-2 text-right"><span class="thru"></span></div>' +
