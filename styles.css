@@ -10565,7 +10565,7 @@ body .team h3:hover {
   cursor: pointer;
 }
 
-body #leaderboard .list {
+body .modal-body {
   -webkit-overflow-scrolling: touch;
 }
 
