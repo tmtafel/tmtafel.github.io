@@ -11,11 +11,11 @@ body {
 
     }
 
-    #leaderboard {
-        .list {
+    .modal-body {
+        -webkit-overflow-scrolling: touch;
+    }
 
-            -webkit-overflow-scrolling: touch;
-        }
+    #leaderboard {
 
         .firstname,
         .lastname {
