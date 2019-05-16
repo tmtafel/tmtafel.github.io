@@ -166,7 +166,7 @@
             return {
                 captain: this.captain,
                 score: this.scoreFormatted(),
-                players: this.playersLive
+                players: this.players
             };
         };
     }
