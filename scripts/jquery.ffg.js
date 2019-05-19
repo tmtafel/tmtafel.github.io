@@ -18,9 +18,12 @@
     };
 
     var teamOptions = {
-        valueNames: ['captain', 'score'],
+        valueNames: ['captain', 'score', 'scoreNumber'],
         item: '<li class="list-group-item px-0 team">' +
-            '<h3 class="d-flex justify-content-between align-items-center"><span class="captain"></span><span class="score badge badge-secondary badge-pill"></span></h3>' +
+            '<h3 class="d-flex justify-content-between align-items-center">' +
+            '<span class="scoreNumber d-none"></span>' +
+            '<span class="captain"></span>' +
+            '<span class="score badge badge-secondary badge-pill"></span></h3>' +
             '<ul class="list list-group collapse"></ul>' +
             '</li>'
     };
@@ -74,15 +77,13 @@
                 });
                 teams.push(team.listItem());
             });
+            teams = SortTeams(teams);
             var leaderboard = [];
             $(leaderboardPlayers).each(function (pIndex, player) {
                 leaderboard.push(player.listItem());
             });
             var leaderboardList = new List('leaderboard', playerOptions, leaderboard);
             var teamList = new List("teams", teamOptions, teams);
-            teamList.sort('score', {
-                order: "desc"
-            });
             $(teamList.items).each(function (tIndex, teamItem) {
                 var $team = $(teamItem.elm);
                 var $name = $team.find("h3");
@@ -129,23 +130,29 @@
         return dfd.promise();
     }
 
+    function SortTeams(teams) {
+        return teams.sort(SortByScore);
+    }
+
+    function SortByScore(a, b) {
+        var aScore = a.scoreNumber;
+        var bScore = b.scoreNumber;
+        return ((aScore < bScore) ? -1 : ((aScore > bScore) ? 1 : 0));
+    }
+
     function Team(captain) {
         this.captain = captain;
         this.players = [];
-        this.playersLive = [];
         this.addPlayer = function (player) {
             this.players.push(player);
-            if (player.hasStarted()) {
-                this.playersLive.push(player);
-            }
         };
         this.score = function () {
-            var scores = new Array();
-            $(this.playersLive).each(function (pIndex, player) {
+            var scores = [];
+            $(this.players).each(function (pIndex, player) {
                 scores.push(player.score);
             });
             scores.sort(function (a, b) {
-                return a - b
+                return a - b;
             });
             var score = 0;
             if (scores.length > 0) {
@@ -165,6 +172,7 @@
         this.listItem = function () {
             return {
                 captain: this.captain,
+                scoreNumber: this.score(),
                 score: this.scoreFormatted(),
                 players: this.players
             };
@@ -189,7 +197,7 @@
         };
         this.teeTime = function () {
             if (this.cut) return null;
-            return moment(player.rounds[this.currentRound - 1].tee_time)
+            return moment(player.rounds[this.currentRound - 1].tee_time);
         };
         this.scoreFormatted = function () {
             if (this.cut) return "MC";
@@ -233,4 +241,5 @@
             };
         };
     }
+
 })(jQuery);
