@@ -1,12 +1,12 @@
 (function ($) {
     var playerOptions = {
-        valueNames: ['id', 'firstname', 'lastname', 'score', 'thru', 'position', 'captain'],
+        valueNames: ['id', 'name', 'score', 'thru', 'position', 'captain'],
         item: '<li class="list-group-item px-0 py-1 d-flex">' +
             '<span class="id d-none"></span>' +
             '<div class="col-1 pl-0 pr-2 d-flex align-items-center justify-content-center"><h4 class="position m-0"></h4></div>' +
 
             '<div class="col-5 px-2 d-flex align-items-center justify-content-start">' +
-            '<div class="d-flex flex-column"><p class="firstname m-0"></p><p class="lastname m-0"></p></div>' +
+            '<div class="d-flex flex-column"><p class="name m-0"></p></div>' +
             '</div>' +
 
             '<div class="col-3 px-2 d-flex align-items-center justify-content-center"><h5 class="thru m-0"></h5></div>' +
