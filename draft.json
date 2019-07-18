@@ -1,78 +1,78 @@
 [{
-    "Captain": "Will",
-    "Players": [
-        "Dustin Johnson",
-        "Tommy Fleetwood",
-        "Francesco Molinari",
-        "Shane Lowry",
-        "Patrick Reed",
-        "Marc Leishman"
-    ]
-},
-{
-    "Captain": "Billy",
-    "Players": [
-        "Brooks Koepka",
-        "Justin Rose",
-        "Matt Kuchar",
-        "Phil Mickelson",
-        "Kevin Na",
-        "Jim Furyk"
-    ]
-},
-{
-    "Captain": "Jackson",
-    "Players": [
-        "Tiger Woods",
-        "Jon Rahm",
-        "Tony Finau",
-        "Martin Kaymer",
-        "Louis Oosthuizen",
-        "Kevin Kisner"
-    ]
-},
-{
-    "Captain": "Tosh",
-    "Players": [
-        "Rory McIlroy",
-        "Rickie Fowler",
-        "Bryson DeChambeau",
-        "Henrik Stenson",
-        "Ian Poulter",
-        "Graeme McDowell"
-    ]
-},
-{
-    "Captain": "Cassidy",
-    "Players": [
-        "Adam Scott",
-        "Jason Day",
-        "Hideki Matsuyama",
-        "Brandt Snedeker",
-        "Sergio Garcia",
-        "Si Woo Kim"
-    ]
-},
-{
     "Captain": "Chris",
     "Players": [
+        "Brooks Koepka",
+        "Henrik Stenson",
         "Patrick Cantlay",
-        "Xander Schauffele",
         "Webb Simpson",
-        "Gary Woodland",
-        "Lucas Glover",
-        "Erik van Rooyen"
+        "Phil Mickelson",
+        "Brandt Snedeker"
     ]
 },
 {
     "Captain": "Brooks",
     "Players": [
-        "Justin Thomas",
+        "Rory McIlroy",
+        "Matt Kuchar",
+        "Louis Oosthuizen",
+        "Kevin Kisner",
+        "Chez Reavie",
+        "Russell Knox"
+    ]
+},
+{
+    "Captain": "Jackson",
+    "Players": [
+        "Dustin Johnson",
+        "Adam Scott",
         "Jordan Spieth",
         "Matt Wallace",
+        "Tony Finau",
+        "Zach Johnson"
+    ]
+},
+{
+    "Captain": "Cassidy",
+    "Players": [
+        "Justin Rose",
+        "Xander Schauffele",
+        "Bryson DeChambeau",
+        "Eddie Pepperell",
+        "Rafa Cabrera Bello",
+        "Andrew Putnam"
+    ]
+},
+{
+    "Captain": "Will",
+    "Players": [
+        "Jon Rahm",
+        "Rickie Fowler",
+        "Jason Day",
         "Paul Casey",
-        "Alex Noren",
-        "Cameron Smith"
+        "Marc Leishman",
+        "Tyrrell Hatton"
+    ]
+},
+{
+    "Captain": "Billy",
+    "Players": [
+        "Tommy Fleetwood",
+        "Justin Thomas",
+        "Hideki Matsuyama",
+        "Gary Woodland",
+        "Bernd Wiesberger",
+        "Matthew Fitzpatrick"
+    ]
+},
+{
+    "Captain": "Tosh",
+    "Players": [
+        "Tiger Woods",
+        "Francesco Molinari",
+        "Graeme McDowell",
+        "Ian Poulter",
+        "Sergio Garcia",
+        "Shane Lowry"
     ]
 }
 ]
