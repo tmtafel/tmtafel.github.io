@@ -123,7 +123,7 @@
                 console.log(ex);
             }
         }
-        $.getJSON("https://statdata.pgatour.com/r/current/leaderboard-v2mini.json", function (result) {
+        $.getJSON("https://statdata.pgatour.com/r/100/leaderboard-v2mini.json", function (result) {
             localStorage.statdata = JSON.stringify(result);
             dfd.resolve(result);
         });
