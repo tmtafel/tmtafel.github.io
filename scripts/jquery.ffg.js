@@ -106,17 +106,22 @@
 
     function GetStatData() {
         var dfd = $.Deferred();
-        var statdata = localStorage.statdata === 'undefined' ? null : localStorage.statdata;
-        if (statdata !== null) {
+        var statdata = null;
+        var lastUpdatedCache = localStorage.lastUpdated === 'undefined' ? null : localStorage.lastUpdated;
+        if (lastUpdatedCache !== null) {
             try {
-                statdata = JSON.parse(localStorage.statdata);
-                var lastUpdated = moment(statdata.last_updated);
-                var now = moment(Date.now());
-                var ms = moment(now, "DD/MM/YYYY HH:mm:ss").diff(moment(lastUpdated, "DD/MM/YYYY HH:mm:ss"));
-                var d = moment.duration(ms);
-                var minuteDifference = Math.floor(d.asMinutes());
-                if (minuteDifference < 5) {
-                    return statdata;
+                var lastUpdated = JSON.parse()
+                statdata = localStorage.statdata === 'undefined' ? null : localStorage.statdata;
+                if (statdata !== null) {
+                    statdata = JSON.parse(localStorage.statdata);
+                    var lastUpdated = moment(lastUpdatedCache);
+                    var now = moment(Date.now());
+                    var ms = moment(now, "DD/MM/YYYY HH:mm:ss").diff(moment(lastUpdated, "DD/MM/YYYY HH:mm:ss"));
+                    var d = moment.duration(ms);
+                    var minuteDifference = Math.floor(d.asMinutes());
+                    if (minuteDifference < 5) {
+                        return statdata;
+                    }
                 }
             } catch (ex) {
                 console.log(ex);
@@ -125,6 +130,7 @@
         $.getJSON("https://statdata.pgatour.com/r/current/leaderboard-v2mini.json", function (result) {
             localStorage.statdata = JSON.stringify(result);
             dfd.resolve(result);
+            localStorage.lastUpdated = Date.now().toJSON();
         });
         return dfd.promise();
     }
